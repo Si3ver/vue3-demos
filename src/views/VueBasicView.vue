@@ -1,4 +1,5 @@
-<script setup>
+<script setup lang="ts">
+// @ts-nocheck
 import { reactive, ref, onMounted, watch } from 'vue'
 const items = ref([{ message: 'Foo' }, { message: 'Bar' }])
 
