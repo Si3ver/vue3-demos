@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { reactive, ref, onMounted, watch } from 'vue'
 const items = ref([{ message: 'Foo' }, { message: 'Bar' }])
 
 const text = ref('')
@@ -7,6 +7,39 @@ const picked = ref('One')
 const checkedNames = ref([])
 const selected = ref('')
 const message = ref('')
+
+const toggle = ref('yes')
+
+onMounted(() => {
+  console.log(`the component is now mounted.`)
+})
+
+// ---- 侦听器 watch & config ----
+const obj = reactive({ count: 0 })
+
+watch(
+  () => obj.count,
+  (newValue, oldValue) => {
+    console.log('watch obj', newValue, oldValue)
+  },
+  { immediate: true, once: true }
+)
+setTimeout(() => {
+  obj.count++
+}, 1000)
+
+// ---- 侦听器 watchEffect & config ----
+const todoId = ref(1)
+const data = ref(null)
+
+watch(
+  todoId,
+  async () => {
+    const response = await fetch(`https://jsonplaceholder.typicode.com/todos/${todoId.value}`)
+    data.value = await response.json()
+  },
+  { immediate: true }
+)
 </script>
 
 <template>
@@ -19,7 +52,7 @@ const message = ref('')
   <br />
   <input :value="text" @input="(evt) => (text = evt.target.value)" />
   <br />
-  <input v-model="text" />
+  <input v-model.trim="text" />
   <br />
 
   <h3>radio 单选框</h3>
@@ -99,6 +132,13 @@ const message = ref('')
     @input="(evt) => (message = evt.target.value)"
     placeholder="add multiple lines"
   ></textarea>
+
+  <h2>值绑定</h2>
+  <input type="checkbox" v-model="toggle" true-value="yes" false-value="no" />
+
+  <h2>watchEffect</h2>
+  <input type="text" v-model="todoId" />
+  <div>{{ data }}</div>
 </template>
 
 <style scoped>
