@@ -12,3 +12,8 @@ app.use(createPinia())
 app.use(router)
 
 app.mount('#app')
+
+app.config.errorHandler = (err) => {
+  /* 处理错误 */
+  console.error('[errorHandler]', err)
+}
