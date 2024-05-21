@@ -26,6 +26,11 @@ const router = createRouter({
       path: '/vueBasic2',
       name: 'vueBasic2',
       component: () => import('../views/VueBasic2View.vue')
+    },
+    {
+      path: '/terminal',
+      name: 'terminal',
+      component: () => import('../views/TerminalView.vue')
     }
   ]
 })
