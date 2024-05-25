@@ -1,12 +1,16 @@
 <script setup lang="ts">
-defineProps<{
-  msg: string
-}>()
+type Props = {
+  msg?: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  msg: 'Welcome to Your Vue.js App'
+})
 </script>
 
 <template>
   <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
+    <h1 class="green">{{ props.msg }}</h1>
     <h3>
       You’ve successfully created a project with
       <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
