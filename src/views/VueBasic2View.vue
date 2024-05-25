@@ -10,7 +10,7 @@ onMounted(() => {
 <template>
   <input type="text" ref="input" />
   <HelloWorld />
-  <HelloWorld msg="aaa" />
+  <HelloWorld msg="aaa" @my-click="(e) => console.log('outer:', e)" />
 </template>
 
 <style scoped></style>

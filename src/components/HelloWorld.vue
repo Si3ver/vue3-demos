@@ -2,20 +2,23 @@
 type Props = {
   msg?: string
 }
-
 const props = withDefaults(defineProps<Props>(), {
-  msg: 'Welcome to Your Vue.js App'
+  msg: 'defaultMsg'
 })
+
+// const emit = defineEmits<{
+//   (e: 'myClick', payload: string): void
+// }>()
+
+// 3.3+ 更简洁的事件声明语法
+const emit = defineEmits<{
+  myClick: [payload: string]
+}>()
 </script>
 
 <template>
   <div class="greetings">
-    <h1 class="green">{{ props.msg }}</h1>
-    <h3>
-      You’ve successfully created a project with
-      <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
-    </h3>
+    <h1 class="green" @click="emit('myClick', 'wtf!')">{{ props.msg }}</h1>
   </div>
 </template>
 
@@ -27,19 +30,7 @@ h1 {
   top: -10px;
 }
 
-h3 {
-  font-size: 1.2rem;
-}
-
-.greetings h1,
-.greetings h3 {
+.greetings h1 {
   text-align: center;
-}
-
-@media (min-width: 1024px) {
-  .greetings h1,
-  .greetings h3 {
-    text-align: left;
-  }
 }
 </style>
