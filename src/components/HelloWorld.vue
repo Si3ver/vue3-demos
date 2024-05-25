@@ -11,14 +11,22 @@ const props = withDefaults(defineProps<Props>(), {
 // }>()
 
 // 3.3+ 更简洁的事件声明语法
-const emit = defineEmits<{
-  myClick: [payload: string]
-}>()
+// const emit = defineEmits<{
+//   myClick: [payload: string]
+// }>()
+
+// 添加事件校验
+const emit = defineEmits({
+  myClick: (payload: string) => {
+    return payload !== 'wtf'
+  }
+})
 </script>
 
 <template>
   <div class="greetings">
-    <h1 class="green" @click="emit('myClick', 'wtf!')">{{ props.msg }}</h1>
+    <h1 class="green" @click="emit('myClick', 'wtf')">line1: {{ props.msg }}</h1>
+    <h1 class="green" @click="emit('myClick', 'wtf!')">line2: {{ props.msg }}</h1>
   </div>
 </template>
 
