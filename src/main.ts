@@ -4,7 +4,7 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import Terminal from 'vue-web-terminal'
 import 'vue-web-terminal/lib/theme/dark.css'
-
+import '@xterm/xterm/css/xterm.css'
 import App from './App.vue'
 import router from './router'
 

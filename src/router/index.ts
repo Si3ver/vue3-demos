@@ -31,6 +31,11 @@ const router = createRouter({
       path: '/terminal',
       name: 'terminal',
       component: () => import('../views/TerminalView.vue')
+    },
+    {
+      path: '/xterm',
+      name: 'xterm',
+      component: () => import('../views/XtermView.vue')
     }
   ]
 })
